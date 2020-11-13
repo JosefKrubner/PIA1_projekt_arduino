@@ -13,9 +13,8 @@ max T pro vent. na 100 % =...
 VÝSTUPY:
 ->LED on/off
 ->překročení max T -> blikání LED
-->Ventilace I off/auto/manual
-	->Velikost napětí pro vent. I
-	->Velikost napětí pro vent. II
+->Ventilace off/auto/manual
+	->Velikost napětí pro vent.	
 ->teplota
 
 STRUKTURA PROGRAMU:
@@ -89,6 +88,12 @@ STRUKTURA PROGRAMU:
 
 		->Mód ventilátoru
 		->Míra chodu vent., pokud modVent != 0
+		
+Kdo co bude dělat:
+	1. program ---- Pepa
+	2. program...připravení struktury - Jirka
+	3. program ----	Šimon
+	
 
 		
 

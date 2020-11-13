@@ -1,0 +1,103 @@
+VSTUPY:
+->teplota z Pt100
+->osvětlení zapnuto/vypnuto
+->požadavek uživatele na mód chodu vent.
+	->při manual požadované "otáčky"
+
+V PROGRAMU:
+
+min T pro zapnutí vent.  =...
+	škálování otáček podle T
+max T pro vent. na 100 % =...
+
+VÝSTUPY:
+->LED on/off
+->překročení max T -> blikání LED
+->Ventilace I off/auto/manual
+	->Velikost napětí pro vent. I
+	->Velikost napětí pro vent. II
+->teplota
+
+STRUKTURA PROGRAMU:
+1. program
+	uživatel nastavuje vstupy...while(true)
+	Volby:
+		0 - exit
+		1 - zapnutí/vypnutí LED
+		2 - nastavení módu vent.
+			a - auto
+			b - manual
+			c - off
+		3 - nastavení teploty
+			a - manuálně
+			b - "náhodně"
+	Výstup:
+		teplota v °C -	 	inputT.txt  		float <číslo>
+		světlo on/off - 	inputLED.txt		bool <1> nebo <0>
+		mód chodu -		inputVentStatus.txt	short int <0> nebo <1> nebo <2> 								       pro       off       auto  manual
+		% chodu při auto	inputVent.txt		float <číslo> 
+2. program
+	
+	nastavit zpoždění ~1000 ms	
+
+	a)Deklarace proměnných
+		//Vstupni promenne
+		float T, vent;
+		bool LED;
+		short int modVent;
+
+		//Vystupni promenne
+		float napetiVent;
+		short int LEDout; // 0 || 1 || 2
+
+
+		
+
+	b)Načtení dat
+		T <- inputT,LED <- inputLED, modVent <- inputVentStatus, vent <- inputVent
+
+	c)Vyhodnocení módu vent. --- switch/if
+		pokud off -> napetiVent = 0
+		pokud auto -> řídící funkce <float fVentAuto(float T)>
+		pokud manual -> funkce <float fVentManual(float vent)>
+
+	d)Vyhodnocení LED
+		funkce, která zkontroluje teplotu a rozhodne o stavu LED
+		<short int fKontrolaTep(float T, LED)>	
+
+	e)Výstup
+		T -> outputT.txt
+		LEDout -> outputLED.txt
+		napetiVent -> outputVent.txt
+		modVent -> outputModVent.txt
+		napetiVent -> outputVent.txt
+		vent -> outputVentProc.txt
+		
+3. program
+	a)Deklarace 
+		// nacist z output files
+		float T, napetiVent;
+		short int modVent, LED, napetiVent, procVent;	
+
+	b)Vypis na obrazovku
+		nastavit zpoždění ~1000 ms
+
+		->vypsání teploty na obrazovku
+		->pokud LED==2, tak informovat o překročení T
+
+		->LED zapnuto/vypnuto
+
+		->Mód ventilátoru
+		->Míra chodu vent., pokud modVent != 0
+
+		
+
+			
+
+
+
+
+
+
+
+

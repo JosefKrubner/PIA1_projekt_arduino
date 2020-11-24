@@ -13,7 +13,7 @@ using namespace std;
 		void fUvodniVypis(){
 			cout << "----------------------------------------\n\n";
 			cout << "      GENERATOR VSTUPNICH DAT             \n";
-			cout << "                                    V2.0      \n";
+			cout << "                                    V2.1      \n";
 			cout << "----------------------------------------\n";
 		}	
 

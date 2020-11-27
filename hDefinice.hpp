@@ -1,5 +1,6 @@
 #pragma once
 
+//Nasledujici definice se tykaji ACII kodu klaves
 #define volbaNula	 	48
 #define volbaJedna 	 	49
 #define volbaDva		50

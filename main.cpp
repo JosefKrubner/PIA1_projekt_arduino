@@ -27,12 +27,11 @@ int main() {
 	float Tkrit = 50;												// nastaveni kriticke teploty
 	short int napetiLED,modVent;
 	bool LED;
+	bool stavNacteni = false;
 	bool stop;														// promnenna pro zastaveni hlavni smycky														
 	/*------------------------------*/
 	
 
-	
-	
 	/*-----Zacatek hlavni smycky-----*/	
 	while(stop!=true){
 	
@@ -40,15 +39,30 @@ int main() {
 		
 		
 		/*-----Volani funkce nacitani hodnot z programu 1-----*/
-		fCteniZInputSouboru(LED,T,vent,modVent);						
+		
+		fCteniZInputSouboru(LED,T,vent,modVent, stavNacteni);
+		
 		/*----------------------------------------------------*/
+		if (stavNacteni == 1){					//kontrola nacteni souboru
+			
+			
+							
+			sleep(0.5);
+			
+					
+		}
+		else {
+			
+			system("cls");				
+					
+		
 		
 		
  		cout <<"Nactene hodnoty z programu 1. jsou: "<<"LED= "<<LED<<"; T= "<<T<<"; vent= "<<vent<<"; modVent= "<<modVent<<endl;
 	
 	
 		/*-----Volani funkce kontroly teploty-----*/	
-		napetiLED=fKontrolaTep(T,LED,Tkrit);					// Pridat, aby v krit stavu byl ventilator vypnut ???
+		napetiLED=fKontrolaTep(T,LED,Tkrit);					
 		/*----------------------------------------*/
 	
 	
@@ -89,8 +103,11 @@ int main() {
 		cout<<endl<<"Konec smycky!!"<<endl;
 		//cin>>stop;
 		sleep(1);										// èeka 2 vteøiny
-	
 		
+		
+	}
+
+	
 	}
 	/*-------------------------------*/
 	
@@ -148,7 +165,7 @@ float fVentManual(float vent){
 
 
 /*-----Funkce nastaveni napeti na ventilatorech dle vstupniho napeti-----*/
-float fVentAuto(float T){										// možno vymyslet neco sofistikovanejšího
+float fVentAuto(float T){										// možno vymyslet neco sofistikovanejsiho
 	float napetiVent;
 	if (T>=20){
 		napetiVent=0.1*T;

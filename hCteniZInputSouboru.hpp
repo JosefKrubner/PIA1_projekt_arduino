@@ -8,13 +8,14 @@
 using namespace std;
 
 
- void fCteniZInputSouboru(bool &LED, float &T,float &vent, short int &modVent){
+ void fCteniZInputSouboru(bool &LED, float &T,float &vent, short int &modVent,bool &stavNacteni){
 
 	
-																	// 	PRIDAT KONTROLU NAHRANI DAT Z TXT
+																 
 bool pomLED;
 float pomT, pomvent;
 short int pommodVent;
+bool pomstavNacteni = false;
 
 
 
@@ -22,6 +23,24 @@ ifstream soubLED("inputLED.txt");
 ifstream soubT("inputT.txt");
 ifstream soubVent("inputVent.txt");
 ifstream soubVentStatus("inputVentStatus.txt");
+																				//	KONTROLU NAHRANI DAT Z TXT
+if (soubLED==NULL){
+	cout<<"vstupni textovy dokument inputLED.txt se nepodarilo nacist\t"<<endl;
+	pomstavNacteni=true;
+}
+if (soubT==NULL){
+	cout<<"vstupni textovy dokument inputT.txt se nepodarilo nacist\t"<<endl;
+	pomstavNacteni=true;
+}
+if (soubVent==NULL){
+	cout<<"vstupni textovy dokument inputVent.txt se nepodarilo nacist\t"<<endl;
+	pomstavNacteni=true;
+}
+if (soubVentStatus==NULL){
+	cout<<"vstupni textovy dokument inputVentStatus.txt se nepodarilo nacist\t"<<endl;
+	pomstavNacteni=true;
+}
+
 
 soubLED>> pomLED;
 soubT >> pomT;
@@ -32,6 +51,7 @@ LED=pomLED;
 T=pomT;
 vent=pomvent;
 modVent=pommodVent;
+stavNacteni=pomstavNacteni;
 
 soubLED.close();
 soubT.close();

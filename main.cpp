@@ -1,3 +1,6 @@
+/*
+    1. Program...slouží ke generování vstupních dat pro hlavní program
+*/
 #include "hKnihovny.hpp"
 #include "hDefinice.hpp"
 #include "hVypisDoInputSouboru.hpp"
@@ -9,7 +12,7 @@ using namespace std;
 
 int main(int argc, char** argv) {
 	//Nastaveni barev konzole
-		system("Color B0");
+		//system("Color B0");
 	//------------------------------------------------------------------------//
 		//Deklarace a inicializace pozivanych promennych
 			bool LED=0;				//Led vypnuto/zapnuto

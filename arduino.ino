@@ -1,4 +1,3 @@
-
 #include <LiquidCrystal.h>
 LiquidCrystal lcd(12, 11, 5, 4, 3, 2);
 
@@ -31,23 +30,20 @@ bool prehod(bool i);
 
 void setup()
 {
- 	pinMode(pinZarovka, OUTPUT); 
-  	pinMode(pinLED, INPUT); 
-  	pinMode(pinTlac, INPUT); 
+  pinMode(pinZarovka, OUTPUT); 
+  pinMode(pinLED, INPUT); 
+  pinMode(pinTlac, INPUT); 
 }
 
 void loop()
 {
   lcd.begin(16, 2);
-  
   krit = 0;
   
   T = map(((analogRead(A1) - 20) * 3.04), 0, 1023, -40, 125);
-
   
-  if(T>Tmax){
-  	krit = 1;}
-  
+  if(T>Tkrit){
+    krit = 1;}
   
   if(mod == modMan){
     val = analogRead(A0)/4;}
@@ -62,39 +58,41 @@ void loop()
   
   analogWrite(9,val);
    
-  tlac = digitalRead(pinTlac);
-  
   if(krit == 0){
     LED = digitalRead(pinLED);}
-  
+
+  tlac = digitalRead(pinTlac);  
   if (tlac != tlacPom && tlac==1){
-  	mod = mod + 1;
+    mod = mod + 1;
     tlacPom = 1;
   }else if(tlac != tlacPom && tlac==0){
-    tlacPom = 0;}
+    tlacPom = 0;
+  }
   
   if (mod==3){
-  	mod = 0;}
+    mod = 0;
+  }
   
-    if(LED==1){
-      digitalWrite(pinZarovka, HIGH);
-    }else{
-      digitalWrite(pinZarovka, LOW);
-    }
-  	
+  if(LED==1){
+    digitalWrite(pinZarovka, HIGH);
+  }else{
+    digitalWrite(pinZarovka, LOW);
+  }
+    
   if(krit==1){
-  	LED = prehod(LED);}
+    LED = prehod(LED);
+  }
   
   lcd.setCursor ( 0, 0 );
-  lcd.print("T:");
-  lcd.print(T);
-  lcd.print("C");
-  lcd.setCursor ( 0, 1 );
-  lcd.print("V:");
+    lcd.print("T:");
+    lcd.print(T);
+    lcd.print("C");
+    lcd.setCursor ( 0, 1 );
+    lcd.print("V:");
     lcd.print(val/2.55);
     lcd.print("%");
 
-    lcd.setCursor ( 10, 0 );
+  lcd.setCursor ( 10, 0 );
     lcd.print("Mode:");
     switch(mod){
       case modAut:
@@ -108,28 +106,32 @@ void loop()
       case modOff:
           lcd.setCursor ( 10, 1 );
           lcd.print("Off");
-          break;}
+          break;
+    }
+    
   delay(del/2);
+  
   if (krit == 1){
-  	lcd.setCursor ( 0, 1 );
+    lcd.setCursor ( 0, 1 );
     lcd.print("Temp. too high!!");
   }
   
   if(LED==1){
-      digitalWrite(pinZarovka, HIGH);
-    }else{
-      digitalWrite(pinZarovka, LOW);
-    }
+    digitalWrite(pinZarovka, HIGH);
+  }else{
+    digitalWrite(pinZarovka, LOW);
+  }
   delay(del/2);
   
   if(krit==1){
-  	LED = prehod(LED);}
-   
+    LED = prehod(LED);
+  } 
 }
 
 bool prehod(bool i){
   bool _i = 0;
   if (i == 0){
-  	_i=1;}
+    _i=1;
+  }
   return _i;
 }

@@ -21,10 +21,10 @@ float fVentManual(float vent);
 
 
 int main() {
-	
+	//system("Color B0");
 	/*-----Deklarace promennych-----*/
 	float T,vent, napetiVent;
-	float Tkrit = 50;												// nastaveni kriticke teploty
+	float Tkrit = 80;												// nastaveni kriticke teploty
 	short int napetiLED,modVent;
 	bool LED;
 	bool stavNacteni = false;
@@ -167,12 +167,20 @@ float fVentManual(float vent){
 /*-----Funkce nastaveni napeti na ventilatorech dle vstupniho napeti-----*/
 float fVentAuto(float T){										// mono vymyslet neco sofistikovanejsiho
 	float napetiVent;
-	if (T>=20){
-		napetiVent=0.1*T;
+	float Tmax = 60;
+	float Tmin = 20;
+	float A = 5/(Tmax - Tmin);
+	float B = A*Tmin;
+	
+	if (T>=Tmin && T<=Tmax){
+		napetiVent=A*T-B;
 	}
-	else{
+	else if(T > Tmax){
+		napetiVent=5;
+	}else{
 		napetiVent=0;
 	}
+	
 	return napetiVent;
 	
 }

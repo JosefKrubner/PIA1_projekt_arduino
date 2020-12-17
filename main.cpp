@@ -1,7 +1,7 @@
 /**************************************************************************
-HlavnÌ Ë·st 2. Programu.
+Hlavn√≠ √®√°st 2. Programu.
 
-	Program naËit· hodnoty z 1. Programu, kterÈ vyhodnocuje a uklad· do soubor˘ .txt.
+	Program na√®it√° hodnoty z 1. Programu, kter√© vyhodnocuje a uklad√° do soubor√π .txt.
 ***************************************************************************/
 #include "hKnihovny.hpp"
 #include "hCteniZInputSouboru.hpp"
@@ -11,7 +11,7 @@ using namespace std;
 
 
 
-/*----- PROTOTYPY FUNKCÕ -----*/
+/*----- PROTOTYPY FUNKC√ç -----*/
 float fKontrolaTep(float T, bool LED,float Tkrit); 
 float fVentAuto(float T);	
 float fVentManual(float vent);	
@@ -24,11 +24,11 @@ int main() {
 	//system("Color B0");
 	/*-----Deklarace promennych-----*/
 	float T,vent, napetiVent;
-	float Tkrit = 80;												// nastaveni kriticke teploty
+	float Tkrit = 80;											// nastaveni kriticke teploty
 	short int napetiLED,modVent;
 	bool LED;
 	bool stavNacteni = false;
-	bool stop;														// promnenna pro zastaveni hlavni smycky														
+	bool stop;												// promnenna pro zastaveni hlavni smycky														
 	/*------------------------------*/
 	
 
@@ -43,7 +43,7 @@ int main() {
 		fCteniZInputSouboru(LED,T,vent,modVent, stavNacteni);
 		
 		/*----------------------------------------------------*/
-		if (stavNacteni == 1){					//kontrola nacteni souboru
+		if (stavNacteni == 1){										//kontrola nacteni souboru
 			
 			
 							
@@ -71,19 +71,19 @@ int main() {
 		/*-----Rozhodovani o napeti ventilatoru-----*/
 		switch(modVent){										// NASTAVENI VSTUPNIHO NAPETI VENTLITORU DLE MODU
 			
-			case 0:												// stav pro prepinac v poloze off
+			case 0:											// stav pro prepinac v poloze off
 		
 			napetiVent=0;
 		
 	
 			break;
-			case 1:												// stav pro prepinac v poloze auto
+			case 1:											// stav pro prepinac v poloze auto
 		
-			napetiVent=fVentAuto(T);					// DOPSAT
+			napetiVent=fVentAuto(T);					
 			
 		
 			break;
-			case 2 :											// stav pro prepinac v poloze manual
+			case 2 :										// stav pro prepinac v poloze manual
 		
 			napetiVent=fVentManual(vent);    
 			
@@ -102,7 +102,7 @@ int main() {
 		sleep(1);
 		cout<<endl<<"Konec smycky!!"<<endl;
 		//cin>>stop;
-		sleep(1);										// Ëeka 2 vte¯iny
+		sleep(1);										
 		
 		
 	}
@@ -131,13 +131,13 @@ float fKontrolaTep(float T, bool LED, float Tkrit){
 		
 		switch(LED){											// NASTAVENI LED 
 			
-			case 0 :											//  prepinac v poloze OFF
+			case 0 :										//  prepinac v poloze OFF
 		
 			napetiLED=0;
 		
 	
 			break;
-			case 1 :											// prepinac v poloze ON
+			case 1 :										// prepinac v poloze ON
 		
 			napetiLED=5;			
 		
@@ -157,7 +157,7 @@ return napetiLED;
 float fVentManual(float vent){
 	float napetiVent;
 			
-	napetiVent=0.05*vent;										// prevod procenta na napeti
+	napetiVent=0.05*vent;											// prevod procenta na napeti
 		
 	return napetiVent;
 }
@@ -165,7 +165,7 @@ float fVentManual(float vent){
 
 
 /*-----Funkce nastaveni napeti na ventilatorech dle vstupniho napeti-----*/
-float fVentAuto(float T){										// moûno vymyslet neco sofistikovanejsiho
+float fVentAuto(float T){										
 	float napetiVent;
 	float Tmax = 60;
 	float Tmin = 20;
